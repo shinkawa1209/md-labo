@@ -37,10 +37,39 @@
    ```
    git push origin [手順３で作ったブランチ名]
    ```
-8.Githubサイト上で反映を確認し、Compare&PullRequastボタンから、変更内容の承認申請を行います。 
+8. Githubサイト上で反映を確認し、Compare&PullRequastボタンから、変更内容の承認申請を行います。 
 
 ### このリポジトリのディレクトリ構成
 **工事中**
 検討中↓<br>
 ・Markdown記法のトレーニングコンテンツ<br>
 ・GitとGithub（もしくはAzureRepos）のトレーニングコンテンツ<br>
+### Github_windowsでの注意点
+- SSH　Keygen　して、Githubに公開鍵の登録が必要（ed25519で作った方が良い）
+- 秘密鍵は、自分のユーザーDir直下に、「.ssh」フォルダが必要
+- 鍵は、Git Bashを使って、以下のコマンドでPermissionを変更する
+    ```
+    chmod 600 ~/.ssh/id_ed25519
+    ```
+- sshAgentを起動し、鍵を登録しておくこと
+  - PowerShell
+  ``` 
+    Get-Service ssh-agent | Set-Service -StartupType Automatic
+    Start-Service ssh-agent
+  ```
+  - ssh-Agentが起動したら鍵を登録
+  ```
+    ssh-add /c/Users/あなたのユーザー名/.ssh/id_ed25519
+  ```
+  - 登録出来ているか、確認
+  ```
+    ssh-add -l
+  ```
+- .sshにConfigファイルを作成し、Git利用時の鍵を指定しておく。
+  - Configファイルの内容（~/.ssh/configに作成）
+  ```
+    Host github github.com
+    HostName github.com
+    IdentityFile ~/.ssh/id_ed25519
+    User あなたのGithubユーザー名
+  ```
