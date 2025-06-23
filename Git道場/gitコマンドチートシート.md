@@ -20,7 +20,7 @@ flowchart LR
 
 
 
-git revert HEAD
+git revert HEAD　コミットを打ち消すよ、というコミットを行う
 
 Git reset ステージングの取り消し
 git reset --soft HEAD^　直前のコミットの取り消し（ファイルの変更内容はそのまま）
