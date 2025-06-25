@@ -78,7 +78,7 @@ flowchart LR
 - ローカルでBranchを削除する
     ```
     コマンド
-    $ git git branch -d [ブランチ名]
+    $ git branch -d [ブランチ名]
     ```
   - 上のコマンドは、マージ済のブランチのみ削除可能
   - 未マージのブランチを削除したい場合は以下のコマンド
@@ -90,6 +90,18 @@ flowchart LR
     ```
     コマンド
     $ git push origin --delete [ブランチ名]
+    ```
+- リモートとローカルのBranchの差を解消する
+  - GithubはPullRequastをMergeすると、Branchは自動で消えますが、ローカルには残ってしまいます。定期的に以下のコマンドでクリアしましょう。
+  - リモート上のBranchの状態を確認する
+    ```
+    コマンド
+    $ git remote show origin
+    ```
+  - stale状態（Trackされてない）Branchをローカルから削除（prune）する
+    ```
+    コマンド
+    $ git remote prune origin
     ```
 #### ファイル編集系
 - リモートリポジトリの内容を取得（fetch）する
