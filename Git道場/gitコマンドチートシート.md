@@ -180,6 +180,12 @@ flowchart LR
     コマンド（ファイルの内容は元に戻さない）
     $ git push origin (必要に応じてBranch名を入力)
     ```
+- ローカルで新規作成したBranchをリモートに転送（Pushする）
+  - 新規作成したBranchはリモート上には存在しないので以下のオプションを付けて実行
+    ```
+    コマンド（ファイルの内容は元に戻さない）
+    $ git push --set-upstream origin [新規作成したBranch名]
+    ```
 - Pushの取り消し
   - Pushを取り消すコマンド自体はないので、ローカル内でPushした内容をrevertして、revertされた内容を再度Pushする
 
