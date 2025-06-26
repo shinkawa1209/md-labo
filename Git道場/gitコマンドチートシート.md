@@ -78,7 +78,7 @@ flowchart LR
 - ローカルでBranchを削除する
     ```
     コマンド
-    $ git git branch -d [ブランチ名]
+    $ git branch -d [ブランチ名]
     ```
   - 上のコマンドは、マージ済のブランチのみ削除可能
   - 未マージのブランチを削除したい場合は以下のコマンド
@@ -90,6 +90,18 @@ flowchart LR
     ```
     コマンド
     $ git push origin --delete [ブランチ名]
+    ```
+- リモートとローカルのBranchの差を解消する
+  - GithubはPullRequastをMergeすると、Branchは自動で消えますが、ローカルには残ってしまいます。定期的に以下のコマンドでクリアしましょう。
+  - リモート上のBranchの状態を確認する
+    ```
+    コマンド
+    $ git remote show origin
+    ```
+  - stale状態（Trackされてない）Branchをローカルから削除（prune）する
+    ```
+    コマンド
+    $ git remote prune origin
     ```
 #### ファイル編集系
 - リモートリポジトリの内容を取得（fetch）する
@@ -157,7 +169,7 @@ flowchart LR
   - HEADの部分を[commit ID]で指定することで、そのコミットを取り消すことも出来ます。
 - コミット（commit）したことをローカル内で打ち消すコミットを実行する
     ```
-    コマンド（ファイルの内容は元に戻さない）
+    コマンド
     $ git revert HEAD
     ```
   - revertは直前の更新を取り消したものをコミットする（履歴の残る）方法です。
@@ -165,8 +177,14 @@ flowchart LR
   - ローカル上で編集しているウチは、どちらを使っても良いですが、リモートにPushした後の修正は、関係者に取り消しの事実を共有するためにrevertを使うことが推奨されます。
 - ローカルのコミット内容をリモートに転送（Pushする）
     ```
-    コマンド（ファイルの内容は元に戻さない）
+    コマンド
     $ git push origin (必要に応じてBranch名を入力)
+    ```
+- ローカルで新規作成したBranchをリモートに転送（Pushする）
+  - 新規作成したBranchはリモート上には存在しないので以下のオプションを付けて実行
+    ```
+    コマンド
+    $ git push --set-upstream origin [新規作成したBranch名]
     ```
 - Pushの取り消し
   - Pushを取り消すコマンド自体はないので、ローカル内でPushした内容をrevertして、revertされた内容を再度Pushする
