@@ -5,6 +5,7 @@ paginate: true
 # Git王道シナリオ（編集中）
 
 **編集開始前**
+
 ```mermaid
 flowchart LR
     A[エクスプローラーで<br>対象フォルダをCodeで開く] --> B[ターミナルはpowershell]
@@ -15,6 +16,7 @@ flowchart LR
 ```
 
 **編集後のマージ提案**
+
 ```mermaid
 flowchart LR
     A[ステージングとコミット] -->|git add .| B[ステージ]
@@ -26,6 +28,7 @@ flowchart LR
 ```
 
 **作業後の処理手順**
+
 ```mermaid
 flowchart LR
 　　A[main branchに戻る] -->|git caeckout main|B[ローカルの<br>作業ブランチ削除]
@@ -66,6 +69,7 @@ C:\Users\KTC\develop\md-labo
 cd .\md-labo
 ※ cd m～tab押下で変換される
 ```
+
 ```
 いるフォルダを間違えて、Pull/Fetch/Clone実行すると・・
 ホーム直下に大量のファイルが作られる。（ぶちまけ状態。）
@@ -93,6 +97,7 @@ git branch または　git status
 　git checkout main
 　git pull origin main
 ```
+
 ```
 もし 他のmain以外のブランチにいる状態で git pull origin main を実行すると
 main の内容が 現在のブランチにマージされてしまう。
@@ -106,27 +111,43 @@ main の内容が 現在のブランチにマージされてしまう。
 
 ## 編集後のマージ提案
 
+- 保存　⇒　ファイル名の横にMマークの確認　：Modified 変更済み
 - 編集内容をadd .してcommitする
+
 ```
 git add .
 git commit -m "接頭辞：作業内容の説明"
 ```
+
 - GitHub上にpushして反映させる
+
 ```
-git psh origin xxx
+git push origin xxx
 ```
+
 - GitHub上でPull Request（PR）を作成
-⇒ GitHub上の画面で「Compare & pull request」でマージ提案
+  ⇒ GitHub上の画面で「Compare & pull request」でマージ提案
+- ファイル横の文字リスト
+
+| Initial | Word             | 意味                                     |
+| ------- | ---------------- | ---------------------------------------- |
+| M       | Ｍｏｄｉｆｉｅｄ | 既存ファイルが編集された                 |
+| U       | Ｕｎｍｅｒｇｅｄ | マージ時の競合が解決されていない△要注意 |
+| A       | Ａｄｄｅｄ       | 新しく追加されたファイル                 |
+| D       | Ｄｅｌｅｔｅｄ   | 削除されたファイル                       |
+| R       | Ｒｅｎａｍｅｄ   | リネームされたファイル                   |
+| C       | Ｃｏｐｉｅｄ     | コピーされたファイル                     |
 
 ## 作業完了後の処理
+
 - main branchに戻る
+
 ```
 git checkout main
 ```
 
 - ローカルの作業ブランチ削除
+
 ```
 git branch -d xxx(作業branch名)
 ```
-
-
