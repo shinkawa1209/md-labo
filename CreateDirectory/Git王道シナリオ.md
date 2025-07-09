@@ -7,40 +7,28 @@ paginate: true
 **編集開始前**
 ```mermaid
 flowchart LR
-A[エクスプローラーで<br>対象フォルダをCodeで開く]
-B[ターミナルはpowershell]
-C[いる場所の確認<br>（フォルダ、branch）]
-D[mainに移動し<br>最新のmainを取得]
-E[作業用branchの作成と移動]
-F[編集開始]
-    A --> B
-    B --> C
-    C -->|フォルダ：pwd<br>branch：git branch| D
-    D -->|git checkout main<br>git pull origin main|E
-    E -->|git checkout -b xxx<br>（xxx:作業branch名）|F
+    A[エクスプローラーで<br>対象フォルダをCodeで開く] --> B[ターミナルはpowershell]
+    B --> C[いる場所の確認<br>（フォルダ、branch）]
+    C -->|フォルダ：pwd<br>branch：git branch| D[mainに移動し<br>最新のmainを取得]
+    D -->|git checkout main<br>git pull origin main|E[作業用branchの作成と移動]
+    E -->|git checkout -b xxx<br>（xxx:作業branch名）|F[編集開始]
 ```
 
 **編集後のマージ提案**
 ```mermaid
 flowchart LR
-A[ステージングとコミット]
-B[ステージ]
-C[履歴に保存]
-D[リモートリポジトリに反映]
-E[GitHubで確認]
-F[Pull Request作成]
-    A -->|git add .| B
-    B -->|git commit| C
-    C -->|git push| D
-    D --> E
-    E -->|GitHubで操作| F
+    A[ステージングとコミット] -->|git add .| B[ステージ]
+    B -->|git commit| C[履歴に保存]
+    C -->|git push| D[リモートリポジトリに反映]
+    D --> E[GitHubで確認]
+    E -->|GitHubで操作| F[Pull Request作成]
 　
 ```
 
 **作業後の処理手順**
 ```mermaid
 flowchart LR
-　　A[main branchに戻る] -->|git caeckout main|B[ローカル作業ブランチ削除<br>※マージ完了を確認後]
+　　A[main branchに戻る] -->|git caeckout main|B[ローカルの<br>作業ブランチ削除]
 　　B -->|git branch -d xxx<br>（作業branch名）| C[完了]
 ```
 
