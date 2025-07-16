@@ -74,7 +74,8 @@ cd .\md-labo
 いるフォルダを間違えて、Pull/Fetch/Clone実行すると・・
 ホーム直下に大量のファイルが作られる。（ぶちまけ状態。）
 ⇒ 修正方法
-隠しフォルダを表示して、半透明の.gitを削除、誤マージファイル/フォルダを削除する。
+1. エクスプローラーへ移動
+2. 隠しフォルダを表示して、半透明の.gitを削除、誤マージファイル/フォルダを削除する。
 ◎今いる場所を把握しつつ何を実行するかが重要なポイント！
 ```
 
@@ -86,12 +87,12 @@ git branch または　git status
 
 ```
 実行後▼
-* feat-addflow
+* xxx（xxx:作業branch名）
   main
 ※ 2つのbranchが存在し、* の場所にいる状態
 ```
 
-- mainに移動し最新のmainを取得
+- mainに移動しmain branchの最新状態を取得
 
 ```
 　git checkout main
@@ -150,4 +151,24 @@ git checkout main
 
 ```
 git branch -d xxx(作業branch名)
+```
+
+- リモート上の作業ブランチも削除できる（不要な場合）
+1.この操作の目的
+作業が完了したブランチを整理することで、リポジトリをクリーンに保つ。
+他のメンバーが不要なブランチを参照するのを防ぐ。
+2.注意点
+リモートからブランチを削除するため、そのブランチの使用有無を確認する。
+
+```
+git push origin --delete xxx
+```
+*作業完了後フロー*
+
+```mermaid
+flowchart LR
+
+A[mainブランチに戻る] -->|checkout main| B[ローカル作業ブランチの削除]
+B -->|git branch -d xxx| C[リモート上の作業ブランチを削除]-->|git push origin --delete xxx| D[完了]
+
 ```
