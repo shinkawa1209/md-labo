@@ -10,13 +10,14 @@ NR4{{NR<br>BrowserAgent}}
 NR1(NR<br>外形監視)
 APP1{{Webサーバ<br>bo-Web}}
 APP2{{Appサーバ<br>bo-API}}
-CP1[仮想マシン（EC2）<br>ip-10-50-88-211.ap-northeast-1.compute.internal]
+CP1(仮想マシン（EC2）<br>ip-10-50-88-211.ap-northeast-1.compute.internal)
 DB1[(DB<br>smartAPI)]
 NR2{{NR<br>InfraAgent}}
 NR5{{NR<br>APMAgent}}
-subgraph bo-EC2[bo-EC2]
+subgraph bo-EC2[仮想マシン]
     subgraph Inf0[インフラ]
         NR2
+        CP1
     end
     subgraph APP0[アプリ]
         APP1
@@ -78,7 +79,7 @@ class APP1,APP2,NW3 SNW
 
 %%Compute関連のスタイル（オレンジ）
 %% ( )で名前を括る
-classDef SCP fill:#e77,color:#fff,stroke:none
+classDef SCP fill:#84d,color:#fff,stroke:none
 class CP1,CP2,CP3 SCP
 
 %%DB関連のスタイル（青）
@@ -93,16 +94,31 @@ class NR1,NR2,NR3,NR4,NR5,NR6,ST1 SST
 
 %%---グループスタイルの設定---
 
+%%EC2のスタイル
+%%[ ]で名前を括る
+classDef EC2 fill:#FAAF12,color:#000,stroke:#fff
+class bo-EC2 EC2
+
+%%外部サイドのスタイル
+%% [ ]で名前を括る
+classDef outside fill:#F3F3FA,color:#000,stroke:#59d,stroke-dasharray:3
+class Client outside
+
+%%アプリサイドのスタイル
+%% [ ]で名前を括る
+classDef appside fill:#FADFA8,color:#000,stroke:#59d,stroke-dasharray:3
+class APP0 appside
+
+%%インフラサイドのスタイル
+%% [ ]で名前を括る
+classDef infside fill:#FADFA8,color:#000,stroke:#59d,stroke-dasharray:3
+class Inf0 infside
+
+
 %%Public subnetのスタイル
 %%[ ]で名前を括る
 classDef SGPuS fill:#efe,color:#092,stroke:none
 class GS SGPuS
-
-%%EC2のスタイル
-%%[ ]で名前を括る
-classDef EC2 fill:#e83,color:#e83,stroke:#fff
-class bo-EC2 EC2
-
 
 %%AWS Cloudのスタイル
 %% [ ]で名前を括る
